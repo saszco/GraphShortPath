@@ -503,16 +503,11 @@ class GraphShortestPath {
     return pathEdges;
   }
 
-
   floydWarshall(matrix, weights, startVertex, endVertex) {
     const vertices = parseInt(this.verticesInput.value);
-    const dist = Array.from({ length: vertices }, () => Array(vertices).fill(Infinity));
-    const next = Array.from({ length: vertices }, () => Array(vertices).fill(null));
+    const adjacencyMatrix = Array.from({ length: vertices }, () => Array(vertices).fill([Infinity, null]));
 
-    for (let i = 0; i < vertices; i++) {
-      dist[i][i] = 0;
-    }
-
+    // Заповнення матриці суміжності на основі початкової матриці
     for (let j = 0; j < weights.length; j++) {
       let from = null, to = null;
       for (let i = 0; i < vertices; i++) {
@@ -523,16 +518,32 @@ class GraphShortestPath {
         }
       }
       if (from !== null && to !== null && from < vertices && to < vertices) {
-        dist[from][to] = weights[j];
-        next[from][to] = to;
+        const weight = weights[j];
+        if (adjacencyMatrix[from][to][0] === Infinity || weight < adjacencyMatrix[from][to][0]) {
+          adjacencyMatrix[from][to] = [weight, j];
+        }
       } else {
         console.error(`Invalid 'from' (${from}) or 'to' (${to}) index for edge with weight ${weights[j]} at index ${j}`);
       }
     }
 
-    console.log('Initial dist matrix:', dist);
-    console.log('Initial next matrix:', next);
+    // Ініціалізація матриці відстаней і наступних вершин
+    const dist = Array.from({ length: vertices }, () => Array(vertices).fill(Infinity));
+    const next = Array.from({ length: vertices }, () => Array(vertices).fill(null));
 
+    // Ініціалізація початкових відстаней та наступних вершин
+    for (let i = 0; i < vertices; i++) {
+      for (let j = 0; j < vertices; j++) {
+        if (i === j) {
+          dist[i][j] = 0; // Відстань від вершини до себе
+        } else if (adjacencyMatrix[i][j][0] !== Infinity) {
+          dist[i][j] = adjacencyMatrix[i][j][0]; // Вага ребра
+          next[i][j] = j;
+        }
+      }
+    }
+
+    // Алгоритм Флойда-Воршелла
     for (let k = 0; k < vertices; k++) {
       for (let i = 0; i < vertices; i++) {
         for (let j = 0; j < vertices; j++) {
@@ -544,44 +555,37 @@ class GraphShortestPath {
       }
     }
 
-    console.log('Final dist matrix:', dist);
-    console.log('Final next matrix:', next);
+    const pathEdges = this.extractPathEdgesFromDistMatrix(adjacencyMatrix, next, startVertex - 1, endVertex - 1);
+    console.log("Path Edges Floyd-Warshall: ", pathEdges);
 
-    const path = this.constructPath(next, startVertex - 1, endVertex - 1);
-    const pathEdges = this.extractPathEdges(matrix, path);
-    if (path.length === 0) {
+    return pathEdges;
+  }
+
+  extractPathEdgesFromDistMatrix(adjacencyMatrix, next, startVertex, endVertex) {
+    const pathEdges = [];
+    let u = startVertex;
+
+    // Якщо шлях відсутній (next[u][endVertex] === null), повертаємо порожній масив
+    if (next[u][endVertex] === null) {
+      console.error(`No path found between vertices ${startVertex + 1} and ${endVertex + 1}.`);
       return pathEdges;
     }
-    console.log("Path Edges Floyd-Warshall: ", pathEdges);
-    return pathEdges;
-  }
 
-  constructPath(next, u, v) {
-    if(next[u][v] === null){
-      return [];
-    }
-    const path = [u];
-    while (u !== v){
-      u = next[u][v];
-      path.push(u);
-    }
-    return path;
-  }
-
-  extractPathEdges(matrix, path) {
-    const pathEdges = [];
-    for(let i = 0; i < path.length - 1; i++){
-      const from = path[i];
-      const to = path[i + 1];
-      for (let j = 0; j < matrix[0].length; j++){
-        if(matrix[from][j] === -1 && matrix[to][j] === 1){
-          pathEdges.push(j);
-          break;
-        }
+    while (u !== endVertex) {
+      const v = next[u][endVertex];
+      if (v === null) {
+        console.error(`Edge between vertices ${u + 1} and ${endVertex + 1} not found in the shortest path.`);
+        return pathEdges;
       }
+
+      // Додаємо індекс ребра, яке входить до найкоротшого шляху
+      pathEdges.push(adjacencyMatrix[u][v][1]); // Додаємо індекс ребра (j)
+      u = v;
     }
     return pathEdges;
   }
+
+
 
   hasCycle(){
     const vertices = parseInt(this.verticesInput.value);
@@ -795,10 +799,6 @@ class GraphForm {
       }
 
       weights.push(intValue);
-    }
-
-    for (let input of weightsRow) {
-      weights.push(parseInt(input.value));
     }
     return weights;
   }
