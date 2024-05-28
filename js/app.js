@@ -323,6 +323,10 @@ class GraphShortestPath {
         }
         pathEdges = this.dijkstra(matrix, weights, startVertex, endVertex);
       } else if (this.selectedAlgorithm === 'bellmanFord'){
+        if (this.hasCycle()) {
+          this.errorMessage.textContent = "Graph contains a cycle. Please regenerate the incidence matrix.";
+          return;
+        }
         pathEdges = this.bellmanFord(matrix, weights, startVertex, endVertex);
         color = '#b2ff00';
       }else if(this.selectedAlgorithm === 'floydWarshall'){
