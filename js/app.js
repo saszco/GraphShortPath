@@ -506,15 +506,15 @@ class GraphShortestPath {
 
   floydWarshall(matrix, weights, startVertex, endVertex) {
     const vertices = parseInt(this.verticesInput.value);
-    const dist = Array.from({length: vertices}, () => Array(vertices).fill(Infinity));
-    const next = Array.from({length: vertices}, () => Array(vertices).fill(null));
+    const dist = Array.from({ length: vertices }, () => Array(vertices).fill(Infinity));
+    const next = Array.from({ length: vertices }, () => Array(vertices).fill(null));
 
     for (let i = 0; i < vertices; i++) {
       dist[i][i] = 0;
     }
 
     for (let j = 0; j < weights.length; j++) {
-      let from, to;
+      let from = null, to = null;
       for (let i = 0; i < vertices; i++) {
         if (matrix[i][j] === 1) {
           to = i;
@@ -522,9 +522,16 @@ class GraphShortestPath {
           from = i;
         }
       }
-      dist[from][to] = weights[j];
-      next[from][to] = to;
+      if (from !== null && to !== null && from < vertices && to < vertices) {
+        dist[from][to] = weights[j];
+        next[from][to] = to;
+      } else {
+        console.error(`Invalid 'from' (${from}) or 'to' (${to}) index for edge with weight ${weights[j]} at index ${j}`);
+      }
     }
+
+    console.log('Initial dist matrix:', dist);
+    console.log('Initial next matrix:', next);
 
     for (let k = 0; k < vertices; k++) {
       for (let i = 0; i < vertices; i++) {
@@ -537,14 +544,17 @@ class GraphShortestPath {
       }
     }
 
+    console.log('Final dist matrix:', dist);
+    console.log('Final next matrix:', next);
+
     const path = this.constructPath(next, startVertex - 1, endVertex - 1);
     if (path.length === 0) {
-      return {path: Infinity, edges: []};
+      return { path: Infinity, edges: [] };
     }
 
     const pathEdges = this.extractPathEdges(matrix, path);
-    return pathEdges;
     console.log("Path Edges Floyd-Warshall: ", pathEdges);
+    return pathEdges;
   }
 
   constructPath(next, u, v) {
