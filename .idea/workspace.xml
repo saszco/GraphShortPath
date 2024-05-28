@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cb2eab7-d1c2-45e4-9831-b20a9b205da3" name="Changes" comment="++">
+    <list default="true" id="6cb2eab7-d1c2-45e4-9831-b20a9b205da3" name="Changes" comment="+++">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/app.js" afterDir="false" />
     </list>
@@ -36,7 +36,7 @@
   }
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -50,7 +50,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.app.js.executor&quot;: &quot;Debug&quot;,
+    &quot;Node.js.app.js.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -95,7 +95,8 @@
       <updated>1715859791969</updated>
       <workItem from="1715859794357" duration="90194000" />
       <workItem from="1716364876898" duration="13735000" />
-      <workItem from="1716453716705" duration="63502000" />
+      <workItem from="1716453716705" duration="64414000" />
+      <workItem from="1716915004852" duration="391000" />
     </task>
     <task id="LOCAL-00001" summary="+">
       <option name="closed" value="true" />
@@ -121,7 +122,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716911565754</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="+++">
+      <option name="closed" value="true" />
+      <created>1716913629948</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716913629948</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -156,6 +165,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="+" />
     <MESSAGE value="++" />
-    <option name="LAST_COMMIT_MESSAGE" value="++" />
+    <MESSAGE value="+++" />
+    <option name="LAST_COMMIT_MESSAGE" value="+++" />
   </component>
 </project>

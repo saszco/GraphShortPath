@@ -548,11 +548,10 @@ class GraphShortestPath {
     console.log('Final next matrix:', next);
 
     const path = this.constructPath(next, startVertex - 1, endVertex - 1);
-    if (path.length === 0) {
-      return { path: Infinity, edges: [] };
-    }
-
     const pathEdges = this.extractPathEdges(matrix, path);
+    if (path.length === 0) {
+      return pathEdges;
+    }
     console.log("Path Edges Floyd-Warshall: ", pathEdges);
     return pathEdges;
   }
