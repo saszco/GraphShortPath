@@ -5,6 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6cb2eab7-d1c2-45e4-9831-b20a9b205da3" name="Changes" comment="ВСЕ ПРАЦЮЄЄЄ">
+      <change afterPath="$PROJECT_DIR$/js/GraphForm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/GraphShortestPath.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/PriorityQueue.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -95,7 +99,7 @@
       <workItem from="1715859794357" duration="90194000" />
       <workItem from="1716364876898" duration="13735000" />
       <workItem from="1716453716705" duration="64414000" />
-      <workItem from="1716915004852" duration="13943000" />
+      <workItem from="1716915004852" duration="30248000" />
     </task>
     <task id="LOCAL-00001" summary="+">
       <option name="closed" value="true" />
@@ -145,7 +149,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716928775552</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="ВСЕ ПРАЦЮЄЄЄ">
+      <option name="closed" value="true" />
+      <created>1716929402954</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1716929402954</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
