@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cb2eab7-d1c2-45e4-9831-b20a9b205da3" name="Changes" comment="ВСЕ ПРАЦЮЄЄЄ">
-      <change afterPath="$PROJECT_DIR$/js/GraphForm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/GraphShortestPath.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/PriorityQueue.js" afterDir="false" />
+    <list default="true" id="6cb2eab7-d1c2-45e4-9831-b20a9b205da3" name="Changes" comment="The latest version (I hope)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/GraphForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/GraphForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/GraphShortestPath.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/GraphShortestPath.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +97,7 @@
       <workItem from="1715859794357" duration="90194000" />
       <workItem from="1716364876898" duration="13735000" />
       <workItem from="1716453716705" duration="64414000" />
-      <workItem from="1716915004852" duration="30248000" />
+      <workItem from="1716915004852" duration="66489000" />
     </task>
     <task id="LOCAL-00001" summary="+">
       <option name="closed" value="true" />
@@ -157,7 +155,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716929402954</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="The latest version (I hope)">
+      <option name="closed" value="true" />
+      <created>1716998126706</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1716998126706</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,6 +201,7 @@
     <MESSAGE value="+++" />
     <MESSAGE value="++++" />
     <MESSAGE value="ВСЕ ПРАЦЮЄЄЄ" />
-    <option name="LAST_COMMIT_MESSAGE" value="ВСЕ ПРАЦЮЄЄЄ" />
+    <MESSAGE value="The latest version (I hope)" />
+    <option name="LAST_COMMIT_MESSAGE" value="The latest version (I hope)" />
   </component>
 </project>

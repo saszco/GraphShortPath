@@ -4,6 +4,7 @@ class GraphForm {
     this.edges = edges;
     this.matrixContainer = document.getElementById('matrixContainer');
     this.errorMessage = document.getElementById('errorMessage'); //Повідомлення помилки
+    this.incidenceMatrix = Array.from({ length: vertices }, () => Array(edges).fill(0));
   }
 
   createMatrixTable() {
@@ -12,6 +13,7 @@ class GraphForm {
     const table = document.createElement('table');
     const headerRow = document.createElement('tr');
     const emptyHeader = document.createElement('th');
+
 
     headerRow.appendChild(emptyHeader);
     for (let i = 0; i < this.edges; i++) {
@@ -45,6 +47,7 @@ class GraphForm {
         const input = document.createElement('input');
         input.type = 'number';
         input.name = `matrix[${i}][${j}]`;
+        input.value = this.incidenceMatrix[i][j];
         td.appendChild(input);
         row.appendChild(td);
       }
@@ -68,7 +71,7 @@ class GraphForm {
         }
         rowValues.push(value);
       }
-      matrix.push(rowValues)
+      matrix.push(rowValues);
     }
     this.errorMessage.textContent = '';
     return this.validateMatrix(matrix) ? matrix : null;

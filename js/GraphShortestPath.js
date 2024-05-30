@@ -136,6 +136,8 @@ class GraphShortestPath {
     //Валідування дій користувача
     if (!vertices || !edges) {
       this.errorMessage.textContent = "Please, enter the number of vertices and edges"
+      this.verticesInput.value = '';
+      this.edgesInput.value = '';
     } else {
       const graphForm = new GraphForm(vertices, edges); //Звернення до класу GraphFrom
       graphForm.createMatrixTable();
@@ -159,7 +161,6 @@ class GraphShortestPath {
       this.minWeightInput.value = '';
       this.maxWeightInput.value = '';
     } else {
-      this.errorMessage.textContent = 'Matrix generated successfully';
       const matrix = this.createIncidenceMatrix(vertices, edges); //Виклик методу генерування матриці інцидентності
       const weights = this.createWeightsArray(edges, minWeight, maxWeight); //Виклик методу генерування ваг ребер
       console.log("Generated Incidence Matrix: ", matrix); //Виведення матриці у консоль
@@ -184,7 +185,6 @@ class GraphShortestPath {
 
   createWeightsArray(edges, minWeight, maxWeight) {
     return Array.from({ length: edges }, () => Math.floor(Math.random() * (maxWeight - minWeight + 1)) + minWeight);
-    console.log(edges);
   }
 
   displayMatrix(matrix, weights) {
@@ -323,10 +323,6 @@ class GraphShortestPath {
         }
         pathEdges = this.dijkstra(matrix, weights, startVertex, endVertex);
       } else if (this.selectedAlgorithm === 'bellmanFord'){
-        if (this.hasCycle()) {
-          this.errorMessage.textContent = "Graph contains a cycle. Please regenerate the incidence matrix.";
-          return;
-        }
         pathEdges = this.bellmanFord(matrix, weights, startVertex, endVertex);
         color = '#b2ff00';
       }else if(this.selectedAlgorithm === 'floydWarshall'){
