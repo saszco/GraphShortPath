@@ -65,7 +65,7 @@ class GraphForm {
       for (let input of row) {
         const value = parseInt(input.value);
         if (![-1, 0, 1, 2].includes(value)) {
-          this.errorMessage.textContent = `Invalid value at row ${i - 1}, column ${parseInt(input.name.split('[')[2].charAt(0)) + 1}. Allowed values are -1, 0, 1, 2.`;
+          this.errorMessage.textContent = `Invalid value at row ${i - 1}, column ${parseInt(input.name.split('[')[2].charAt(0)) + 1}. Allowed values are -1, 0, 1`;
           input.value = '';
           return null;
         }

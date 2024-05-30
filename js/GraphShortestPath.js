@@ -118,7 +118,7 @@ class GraphShortestPath {
   }
 
   validateVerticesRange(startVertex, endVertex, vertices) {
-    if (startVertex < 0 || startVertex > vertices || endVertex < 0 || endVertex > vertices) {
+    if (startVertex <= 0 || startVertex > vertices || endVertex <= 0 || endVertex > vertices) {
       this.errorMessage.textContent = `Start vertex and end vertex should be in range from 1 to ${vertices}`;
       this.startVertexInput.value = '';
       this.endVertexInput.value = '';
@@ -392,6 +392,7 @@ class GraphShortestPath {
     const previousVertices = Array(vertices).fill(null);
     const visited = new Set();
     const edgeMapping = {};
+    let visitedCount = 0;
 
     console.log("weights in dijkstra: ", weights);
 
@@ -429,6 +430,7 @@ class GraphShortestPath {
         continue;
       }
       visited.add(currentVertex);
+      visitedCount++; // Збільшуємо лічильник при відвідуванні вершини
       const neighbors = edgeMapping[currentVertex + 1] || [];
       for (const {to, weight, edge } of neighbors){
         const newDistance = distances[currentVertex] + weight;
@@ -447,6 +449,7 @@ class GraphShortestPath {
       currentVertex = previousVertices[currentVertex].vertex;
     }
     console.log("Path Edges Array Dijkstra:", pathEdges); // Перевірка шляху в консолі
+    console.log(`Number of visited vertices Dijkstra: ${visitedCount}`); // Виводимо кількість відвіданих вершин
 
     return pathEdges;
   }
@@ -456,6 +459,7 @@ class GraphShortestPath {
     const edgesCount = weights.length;
     const distances = Array(vertices).fill(Infinity);
     const previousVertices = Array(vertices).fill(null);
+    const visited = new Set(); // Набір для відстеження відвіданих вершин
     distances[startVertex - 1] = 0;
 
     //Перетворення матриці інцидентності у список ребер
@@ -480,6 +484,7 @@ class GraphShortestPath {
         if(distances[from] + weight < distances[to]){
           distances[to] = distances[from] + weight;
           previousVertices[to] = { vertex: from, edge: edgeIndex };
+          visited.add(to); // Додаємо вершину до набору відвіданих
         }
       }
     }
@@ -500,12 +505,15 @@ class GraphShortestPath {
       currentVertex = previousVertices[currentVertex].vertex;
     }
     console.log("Path Edges Bellman-Ford", pathEdges);
+    console.log(`Number of visited vertices BellmanFord: ${visited.size}`); // Виводимо кількість відвіданих вершин
     return pathEdges;
   }
 
   floydWarshall(matrix, weights, startVertex, endVertex) {
     const vertices = parseInt(this.verticesInput.value);
     const adjacencyMatrix = Array.from({ length: vertices }, () => Array(vertices).fill([Infinity, null]));
+    let visitedCount = 0; // Лічильник відвіданих вершин
+    const visited = new Set(); // Набір для відстеження відвіданих вершин
 
     // Заповнення матриці суміжності на основі початкової матриці
     for (let j = 0; j < weights.length; j++) {
@@ -539,6 +547,8 @@ class GraphShortestPath {
         } else if (adjacencyMatrix[i][j][0] !== Infinity) {
           dist[i][j] = adjacencyMatrix[i][j][0]; // Вага ребра
           next[i][j] = j;
+          visited.add(i); // Додаємо вершину до набору відвіданих
+          visited.add(j);
         }
       }
     }
@@ -550,6 +560,8 @@ class GraphShortestPath {
           if (dist[i][k] + dist[k][j] < dist[i][j]) {
             dist[i][j] = dist[i][k] + dist[k][j];
             next[i][j] = next[i][k];
+            visited.add(i); // Додаємо вершину до набору відвіданих
+            visited.add(j);
           }
         }
       }
@@ -557,7 +569,8 @@ class GraphShortestPath {
 
     const pathEdges = this.extractPathEdgesFromDistMatrix(adjacencyMatrix, next, startVertex - 1, endVertex - 1);
     console.log("Path Edges Floyd-Warshall: ", pathEdges);
-
+    visitedCount = visited.size;
+    console.log(`Number of visited vertices Floyd: ${visitedCount}`); // Виводимо кількість відвіданих вершин
     return pathEdges;
   }
 
